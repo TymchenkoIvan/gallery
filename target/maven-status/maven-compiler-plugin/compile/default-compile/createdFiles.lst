@@ -1,0 +1,7 @@
+com\baeldung\application\repositories\FileSystemRepository.class
+com\baeldung\application\Application.class
+com\baeldung\application\controllers\PhotoController.class
+com\baeldung\application\services\FileLocationService.class
+com\baeldung\application\repositories\PhotoRepository.class
+com\baeldung\application\entities\Photo.class
+com\baeldung\application\controllers\LoginController.class
