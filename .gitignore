@@ -8,3 +8,5 @@
 .classpath
 .**
 /gallery-front-end/node_modules
+/src/main/resources/gallery
+/src/main/resources/application.properties

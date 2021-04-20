@@ -5,3 +5,8 @@ spring.datasource.url=
 spring.datasource.username=
 spring.datasource.password=
 spring.datasource.driver-class-name = com.mysql.jdbc.Driver
+
+gallery.resource.directory = C:/training/photogallery/src/main/resources/
+gallery.prefix = gallery/
+gallery.thumbnail.prefix = _thumbnail
+gallery.file.format = jpg
