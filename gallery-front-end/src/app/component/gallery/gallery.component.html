@@ -1,0 +1,8 @@
+<div class="gallery" [ngClass]="{'gallery-hidden' : dialogIsOpen()}">
+  <div *ngFor="let photo of photos; let i = index" class="gallery-container" >
+      <img src="{{photo.thumbnailUrl}}"
+           (click)="openModal(photo, i)"
+           loading="lazy" >
+  </div>
+</div>
+

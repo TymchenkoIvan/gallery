@@ -1,0 +1,7 @@
+<span class="close cursor" (click)="closeModal()">&#x2716;</span>
+<div class="slide-modal-content">
+  <img class="center-fit" src="http://localhost:8080/photos/{{this.photo.id}}/content">
+  <a class="prev" *ngIf="" (click)="nextSlide()">&#10094;</a>
+  <a class="next" (click)="previousSlide()">&#10095;</a>
+</div>
+

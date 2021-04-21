@@ -1,0 +1,28 @@
+<mat-toolbar>
+  <span class="name">Photo gallery</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="isAuthenticated()"
+          aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+    <button mat-menu-item routerLink="gallery/add-photo">
+      <mat-icon>add_a_photo</mat-icon>
+      <span>Add photo</span>
+    </button>
+    <button mat-menu-item routerLink="gallery">
+      <mat-icon>home</mat-icon>
+      <span>Gallery</span>
+    </button>
+  </mat-menu>
+  <button mat-button routerLink="login" *ngIf="!isAuthenticated() && router.url != '/login'">
+    <mat-icon>login</mat-icon>
+  </button>
+  <button mat-button routerLink="gallery" *ngIf="!isAuthenticated() && router.url === '/login'">
+    <mat-icon>home</mat-icon>
+  </button>
+</mat-toolbar>
