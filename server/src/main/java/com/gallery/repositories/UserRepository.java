@@ -1,9 +1,9 @@
-package com.baeldung.application.repositories;
+package com.gallery.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.baeldung.application.entities.User;
+import com.gallery.entities.User;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Long>{

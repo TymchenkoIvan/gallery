@@ -1,0 +1,26 @@
+version: "3"
+services:
+
+  docker_db:
+    image: mysql:8.0
+    networks:
+      - gallery-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=ThePassword
+      - MYSQL_DATABASE=gallery
+      - MYSQL_USER=spring
+      - MYSQL_PASSWORD=ThePassword
+
+  gallery:
+#    image: gallery
+    build: ./server
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    networks:
+      - gallery-mysql
+    depends_on:
+      - docker_db
+
+networks:
+  gallery-mysql:

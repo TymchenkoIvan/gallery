@@ -1,4 +1,4 @@
-package com.baeldung.application.repositories;
+package com.gallery.repositories;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

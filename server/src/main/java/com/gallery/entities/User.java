@@ -1,4 +1,4 @@
-package com.baeldung.application.entities;
+package com.gallery.entities;
 
 import java.time.LocalDateTime;
 

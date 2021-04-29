@@ -1,13 +1,17 @@
-target/
 .idea
-src/main/resources/gallery
-src/main/resources/application.properties
+server/target/
+server/.idea
+server/src/main/resources/gallery
+server/src/main/resources/application.properties
 
-gallery-front-end/node_modules
-gallery-front-end/e2e
+client/node_modules
+client/node
+client/e2e
+client/target/
+client/dist/
 
 # IDEs and editors
-/.idea
+/server/.idea
 .project
 .classpath
 .c9/

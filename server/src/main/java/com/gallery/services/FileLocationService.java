@@ -1,4 +1,4 @@
-package com.baeldung.application.services;
+package com.gallery.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
@@ -6,9 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.baeldung.application.entities.Photo;
-import com.baeldung.application.repositories.FileSystemRepository;
-import com.baeldung.application.repositories.PhotoRepository;
+import com.gallery.entities.Photo;
+import com.gallery.repositories.FileSystemRepository;
+import com.gallery.repositories.PhotoRepository;
 
 @Service
 public

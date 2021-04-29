@@ -1,8 +1,23 @@
-## Spring Boot Angular
+# to run on local machine
+mvn clean package
+docker run -d --name docker_db 
+    -e MYSQL_ROOT_PASSWORD=ThePassword 
+    -e MYSQL_DATABASE=gallery 
+    -e MYSQL_USER=spring 
+    -e MYSQL_PASSWORD=ThePassword 
+    -d mysql:8.0
+docker build -t gallery .
+docker run --name spring -d -p 8080:8080 --link docker_db:docker_db gallery
 
-This module contains articles about Spring Boot with Angular
 
-### Relevant Articles:
 
-- [Building a Web Application with Spring Boot and Angular](https://www.baeldung.com/spring-boot-angular-web)
-- [A Simple E-Commerce Implementation with Spring](https://www.baeldung.com/spring-angular-ecommerce)
+#usefull
+docker container logs spring
+docker ps
+docker ps -a
+docker rm spring
+docker-compose up --build -d
+docker build -t client .
+docker system prune --all
+
+

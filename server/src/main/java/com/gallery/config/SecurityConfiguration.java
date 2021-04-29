@@ -1,4 +1,4 @@
-package com.baeldung.application.config;
+package com.gallery.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import com.baeldung.application.services.CustomUserDetailsService;
+import com.gallery.services.CustomUserDetailsService;
 
 @Configuration
 @EnableConfigurationProperties

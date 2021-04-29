@@ -1,4 +1,4 @@
-package com.baeldung.application.controllers;
+package com.gallery.controllers;
 
 import java.util.List;
 
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.baeldung.application.entities.Photo;
-import com.baeldung.application.repositories.PhotoRepository;
-import com.baeldung.application.services.FileLocationService;
+import com.gallery.entities.Photo;
+import com.gallery.repositories.PhotoRepository;
+import com.gallery.services.FileLocationService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")

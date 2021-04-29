@@ -1,4 +1,4 @@
-package com.baeldung.application.services;
+package com.gallery.services;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,8 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.baeldung.application.entities.User;
-import com.baeldung.application.repositories.UserRepository;
+import com.gallery.entities.User;
+import com.gallery.repositories.UserRepository;
 
 @Component
 public class CustomUserDetailsService implements UserDetailsService {

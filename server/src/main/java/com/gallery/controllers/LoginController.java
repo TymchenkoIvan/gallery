@@ -1,4 +1,4 @@
-package com.baeldung.application.controllers;
+package com.gallery.controllers;
 
 import java.security.Principal;
 
