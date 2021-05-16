@@ -20,7 +20,7 @@ import com.gallery.services.FileLocationService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/photos")
+@RequestMapping("/api/photos")
 public class PhotoController {
 
     private PhotoRepository photoRepository;

@@ -1,8 +1,12 @@
-version: "3"
+version: "3.2"
 services:
 
   docker_db:
     image: mysql:8.0
+    volumes:
+      - type: bind
+        source: C:\training\volume\mysqldb
+        target: /var/lib/mysql/
     networks:
       - gallery-mysql
     environment:
@@ -10,11 +14,17 @@ services:
       - MYSQL_DATABASE=gallery
       - MYSQL_USER=spring
       - MYSQL_PASSWORD=ThePassword
+    ports:
+    - 23306:3306
 
   gallery:
 #    image: gallery
     build: ./server
     restart: on-failure
+    volumes:
+      - type: bind
+        source: C:\training\volume\resources
+        target: /server/resources/
     ports:
       - "8080:8080"
     networks:
@@ -24,3 +34,4 @@ services:
 
 networks:
   gallery-mysql:
+

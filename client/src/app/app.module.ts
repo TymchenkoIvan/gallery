@@ -22,6 +22,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {NgxMatFileInputModule} from '@angular-material-components/file-input';
 import {BasicAuthInterceptor} from './service/basic-auth-interceptor.service';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import {BasicAuthInterceptor} from './service/basic-auth-interceptor.service';
     MatMenuModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSnackBarModule,
     NgxMatFileInputModule,
     BrowserAnimationsModule,
     ReactiveFormsModule

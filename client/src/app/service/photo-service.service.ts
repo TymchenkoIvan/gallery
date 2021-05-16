@@ -5,24 +5,26 @@ import { Observable } from 'rxjs/Observable';
 import {Photo} from '../model/photo';
 import {map} from 'rxjs/operators';
 import {environment} from '../../environments/environment';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable()
 export class PhotoService {
 
-  private static PHOTOS_URL: string = '/photos';
+  private static PHOTOS_URL = '/api/photos';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private snackBar: MatSnackBar) {
   }
 
   public findAll(): Observable<Photo[]> {
     return this.http.get<Photo[]>(environment.apiUrl + PhotoService.PHOTOS_URL)
       .pipe(
         map(photo => {
-          return photo.map(function (photo) {
+          return photo.map(function(photo) {
             photo.thumbnailUrl = `${environment.apiUrl + PhotoService.PHOTOS_URL}/${photo.id}/thumbnail`;
             photo.photoUrl = `${environment.apiUrl + PhotoService.PHOTOS_URL}/${photo.id}/content`;
             return photo;
-          })
+          });
         }));
   }
 
@@ -34,9 +36,13 @@ export class PhotoService {
     this.http.post(`${environment.apiUrl + PhotoService.PHOTOS_URL}`, uploadImageData, { observe: 'response' })
       .subscribe((response) => {
           if (response.status === 200) {
-            console.log('Image uploaded successfully');
+            this.snackBar.open('Image uploaded successfully', 'Ok', {
+              duration: 5000
+            });
           } else {
-            console.log('Image not uploaded successfully');
+            this.snackBar.open('Image was not uploaded!', 'Ok', {
+              duration: 5000
+            });
           }
         }
       );

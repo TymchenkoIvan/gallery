@@ -32,6 +32,12 @@ public class FileSystemRepository {
     @Value( "${gallery.thumbnail.prefix}" )
     private String thumbnailPrefix;
 
+    @Value( "${gallery.thumbnail.width}" )
+    private Integer thumbnailWidth;
+
+    @Value( "${gallery.thumbnail.height}" )
+    private Integer thumbnailHeight;
+
     public String saveOriginal(byte[] content, String imageName) throws Exception {
         String fileLocation = galleryPrefix + imageName + "_" + new Date().getTime();
         return save(content, fileLocation);
@@ -43,7 +49,7 @@ public class FileSystemRepository {
 
         thumbnail = Thumbnails.of(thumbnail)
                 .crop(Positions.CENTER)
-                .size(600,400)
+                .size(thumbnailWidth, thumbnailHeight)
                 .outputFormat(fileFormat)
                 .asBufferedImage();
 

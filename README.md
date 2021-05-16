@@ -19,5 +19,6 @@ docker rm spring
 docker-compose up --build -d
 docker build -t client .
 docker system prune --all
-
+docker exec -it <container_id> powershell
+docker exec -it <container_id> sh
 

@@ -12,8 +12,8 @@ import {Observable} from 'rxjs/Observable';
 })
 export class AuthenticationService {
 
-  private static LOGIN_URL: string = '/user/login';
-  private static LOGOUT_URL: string = '/user/logout';
+  private static LOGIN_URL: string = '/api/user/login';
+  private static LOGOUT_URL: string = '/api/user/logout';
 
   private userSubject: BehaviorSubject<User>;
   public user: Observable<User>;

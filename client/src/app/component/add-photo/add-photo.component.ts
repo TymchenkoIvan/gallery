@@ -8,28 +8,29 @@ import {PhotoService} from '../../service/photo-service.service';
   styleUrls: ['./add-photo.component.scss']
 })
 export class AddPhotoComponent  implements OnInit {
-  form: FormGroup;
 
   constructor(private photoService: PhotoService,
               private fb: FormBuilder){}
+  form: FormGroup;
+  @Input() error: string | null;
+
+  @Output() submitEM = new EventEmitter();
 
   ngOnInit(){
     this.form = this.fb.group({
       name: new FormControl('', Validators.required),
       file: new FormControl('', Validators.required)
-    })
+    });
   }
 
   submit() {
     if (this.form.valid) {
       this.submitEM.emit(this.form.value);
       const uploadData = new FormData();
-      uploadData.append('file', this.form.controls['file'].value, this.form.controls['name'].value);
+      uploadData.append('file', this.form.controls.file.value, this.form.controls.name.value);
       this.photoService.uploadPhoto(uploadData);
       this.form.reset();
+      console.log(this.form);
     }
   }
-  @Input() error: string | null;
-
-  @Output() submitEM = new EventEmitter();
 }
