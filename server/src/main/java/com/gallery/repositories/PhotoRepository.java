@@ -9,5 +9,5 @@ import com.gallery.entities.Photo;
 
 @Repository
 public interface PhotoRepository extends CrudRepository<Photo, Long>{
-    List<Photo> findByOrderByIdDesc();
+    List<Photo> findByOrderByOriginalDateDesc();
 }

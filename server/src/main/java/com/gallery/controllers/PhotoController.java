@@ -19,7 +19,7 @@ import com.gallery.repositories.PhotoRepository;
 import com.gallery.services.FileLocationService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/photos")
 public class PhotoController {
 
@@ -34,7 +34,7 @@ public class PhotoController {
 
     @GetMapping()
     public List<Photo> getPhotos() {
-        return photoRepository.findByOrderByIdDesc();
+        return photoRepository.findByOrderByOriginalDateDesc();
     }
 
     @GetMapping("/{photoId}")

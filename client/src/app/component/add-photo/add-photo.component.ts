@@ -30,7 +30,6 @@ export class AddPhotoComponent  implements OnInit {
       uploadData.append('file', this.form.controls.file.value, this.form.controls.name.value);
       this.photoService.uploadPhoto(uploadData);
       this.form.reset();
-      console.log(this.form);
     }
   }
 }
