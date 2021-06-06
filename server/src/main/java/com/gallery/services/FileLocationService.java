@@ -15,6 +15,7 @@ import com.drew.imaging.ImageProcessingException;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.exif.ExifSubIFDDirectory;
 import com.gallery.entities.Photo;
+import com.gallery.repositories.AlbumRepository;
 import com.gallery.repositories.FileSystemRepository;
 import com.gallery.repositories.PhotoRepository;
 
@@ -28,13 +29,18 @@ class FileLocationService {
     @Autowired
     private PhotoRepository imageDbRepository;
 
+    @Autowired
+    private AlbumRepository albumRepository;
+
     public Long save(byte[] bytes, String imageName) throws Exception {
         String location = fileSystemRepository.saveOriginal(bytes, imageName);
         String locationThumbnail = fileSystemRepository.saveThumbnail(bytes, imageName);
         Date originalDateTime = executeDateTime(bytes);
 
-        return imageDbRepository.save(new Photo(imageName, location, locationThumbnail, originalDateTime))
-                .getId();
+        Photo photo = new Photo(imageName, location, locationThumbnail, originalDateTime);
+        photo.setAlbum(albumRepository.getOne(1L));
+
+        return imageDbRepository.save(photo).getId();
     }
 
     public FileSystemResource findPhoto(Long imageId) {
