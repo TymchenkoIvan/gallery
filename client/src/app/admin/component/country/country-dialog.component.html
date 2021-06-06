@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>{{title}}</h2>
+
+<mat-dialog-content [formGroup]="form">
+  <mat-form-field>
+    <input required matInput placeholder="Country" formControlName="name">
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button
+          (click)="close()">Close</button>
+  <button mat-button
+          (click)="save()"
+          type="submit"
+          [disabled]="form.invalid || !form.dirty">Save</button>
+</mat-dialog-actions>

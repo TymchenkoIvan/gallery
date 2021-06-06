@@ -26,7 +26,7 @@ public class Album {
     @Column(length = 50, nullable = false, unique=true)
     private String name;
 
-    private Long description;
+    private String description;
 
     @OneToMany(fetch = FetchType.LAZY, cascade =  CascadeType.ALL, mappedBy = "album")
     private List<Photo> photos;
@@ -58,11 +58,11 @@ public class Album {
         this.name = name;
     }
 
-    public Long getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(Long description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 

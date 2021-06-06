@@ -32,7 +32,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/index.html", "/", "/api/user/**", "/gallery/**").permitAll()
+                .antMatchers("/index.html",
+                        "/",
+                        "/api/user/**",
+                        "/gallery/**",
+                        "/api/countries/**",
+                        "/api/albums/**").permitAll()
 /*
                 .antMatchers("/photos").authenticated()
 */

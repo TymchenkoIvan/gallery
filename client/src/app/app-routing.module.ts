@@ -10,7 +10,11 @@ const routes: Routes = [
   { path: 'gallery', component: GalleryComponent },
   { path: 'gallery/photos/:id', component: PhotoComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'gallery/add-photo', component: AddPhotoComponent }
+  { path: 'gallery/add-photo', component: AddPhotoComponent },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+  },
 ];
 
 @NgModule({
