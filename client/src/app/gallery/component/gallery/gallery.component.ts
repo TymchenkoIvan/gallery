@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {Photo} from '../../model/photo';
-import {PhotoService} from '../../service/photo-service.service';
+import {Photo} from '../../../model/photo';
 import {PhotoDialogComponent} from '../photo-dialog/photo-dialog.component';
 import {MatDialog, MatDialogRef, MatDialogState} from '@angular/material/dialog';
+import {PhotoService} from '../../service/photo-service.service';
 
 @Component({
   selector: 'app-gallery',

@@ -1,5 +1,18 @@
+.add-button-container {
+  margin: 16px 16px 16px 16px;
+  border-radius: 5px;
+  padding-left: 16px;
+}
+
 table {
-  width: 100%;
+  position: inherit;
+  width: -moz-available;
+  width: -webkit-fill-available;
+  margin: 16px 16px 16px 32px;
+  border-right: none;
+  color: white;
+  border-radius: 5px;
+  padding: 16px;
 }
 
 button {

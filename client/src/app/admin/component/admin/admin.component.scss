@@ -7,7 +7,15 @@
 }
 
 mat-sidenav {
+  margin: 16px;
   width: 250px;
-  height: 100vh;
+  border-right: none;
+  color: white;
+  border-radius: 5px;
+  padding: 16px;
   text-align: center;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
 }

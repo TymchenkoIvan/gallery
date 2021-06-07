@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import {Photo} from '../model/photo';
+import {Photo} from '../../model/photo';
 import {map} from 'rxjs/operators';
-import {environment} from '../../environments/environment';
+import {environment} from '../../../environments/environment';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable()

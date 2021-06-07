@@ -19,6 +19,7 @@ import {CountryDialogComponent} from './component/country/country-dialog.compone
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
+import {AlbumService} from './service/album-service.service';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import {MatInputModule} from '@angular/material/input';
     ReactiveFormsModule
   ],
   providers: [
-    CountryService
+    CountryService,
+    AlbumService
   ]
 })
 export class AdminModule {

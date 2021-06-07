@@ -26,7 +26,7 @@ export class CountryComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
       countryDto: null,
-      title: 'Add new contry'
+      title: 'Add new country'
     };
 
     const dialogRef = this.dialog.open(CountryDialogComponent, dialogConfig);

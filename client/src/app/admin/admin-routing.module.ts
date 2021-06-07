@@ -13,7 +13,7 @@ const adminRoutes: Routes = [
       {
         path: '',
         children: [
-          {path : '', component : CountryComponent},
+          {path : '', redirectTo: 'countries', pathMatch: 'full'},
           {path : 'albums', component : AlbumComponent},
           {path : 'countries', component : CountryComponent},
           {path : 'photos', component : PhotosComponent}

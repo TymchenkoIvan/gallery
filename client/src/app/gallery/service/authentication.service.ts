@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {environment} from '../../environments/environment';
+import {environment} from '../../../environments/environment';
 import {Router} from '@angular/router';
 import {finalize, map} from 'rxjs/operators';
 import {BehaviorSubject} from 'rxjs';
-import {User} from '../model/user';
+import {User} from '../../model/user';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable({
