@@ -1,5 +1,5 @@
 .mat-drawer-content {
-  height: calc(100vh - 125px);
+  height: fit-content;
 }
 
 .is-active {
@@ -7,8 +7,7 @@
 }
 
 mat-sidenav {
-  margin: 16px;
-  width: 250px;
+  width: fit-content;
   border-right: none;
   color: white;
   border-radius: 5px;
@@ -18,4 +17,17 @@ mat-sidenav {
 
 .example-spacer {
   flex: 1 1 auto;
+}
+
+mat-toolbar button {
+  padding: 0px 8px;
+  min-width: 32px;
+}
+
+.example-sidenav-content {
+  display: flex;
+}
+
+mat-toolbar {
+  height: 48px;
 }

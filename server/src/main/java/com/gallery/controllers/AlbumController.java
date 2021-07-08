@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gallery.dto.AlbumDto;
-import com.gallery.dto.CountryDto;
+import com.gallery.entities.Album;
 import com.gallery.entities.Country;
+import com.gallery.exception.EntityDeleteConflictException;
 import com.gallery.repositories.AlbumRepository;
+import com.gallery.repositories.CountryRepository;
 import com.gallery.services.ConvertorService;
 
 @RestController
@@ -26,43 +29,61 @@ import com.gallery.services.ConvertorService;
 @RequestMapping("/api/albums")
 public class AlbumController {
 
-    private AlbumRepository albumRepository;
-
-    private ConvertorService convertor;
+    private final AlbumRepository albumRepository;
+    private final CountryRepository countryRepository;
+    private final ConvertorService convertor;
 
     public AlbumController(AlbumRepository albumRepository,
+                           CountryRepository countryRepository,
                            ConvertorService convertor) {
         this.albumRepository = albumRepository;
         this.convertor = convertor;
+        this.countryRepository = countryRepository;
     }
 
     @GetMapping()
     public List<AlbumDto> getAll() {
         return albumRepository.findAll()
                 .stream()
-                .map(album -> convertor.toDto(album))
+                .map(convertor::toDto)
                 .collect(Collectors.toList());
     }
 
- /*   @PostMapping()
-    public void create(@RequestBody CountryDto countryDto) {
-        countryRepository.save(convertor.toEntity(countryDto));
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping()
+    public void create(@RequestBody AlbumDto albumDto) {
+        Album album = convertor.toEntity(albumDto);
+        Country country = countryRepository.findByName(albumDto.getCountryName());
+        album.setCountry(country);
+        albumRepository.save(album);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PutMapping("/{id}")
     public void update(@PathVariable Long id,
-                       @RequestBody CountryDto countryDto) {
-        Country country = countryRepository
+                       @RequestBody AlbumDto albumDto) {
+        Album album = albumRepository
                 .findById(id)
                 .orElseThrow(EntityNotFoundException::new);
-        country.setName(countryDto.getName());
-        countryRepository.save(country);
+
+        Country country = countryRepository.findByName(albumDto.getCountryName());
+        album.setName(albumDto.getName());
+        album.setDescription(albumDto.getDescription());
+        album.setCountry(country);
+        albumRepository.save(album);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @DeleteMapping("/{id}")
-    public void getCountries(@PathVariable Long id) {
-        countryRepository.delete(countryRepository
+    public void delete(@PathVariable Long id) {
+        Album album = albumRepository
                 .findById(id)
-                .orElseThrow(EntityNotFoundException::new));
-    }*/
+                .orElseThrow(EntityNotFoundException::new);
+
+        if (!album.getPhotos().isEmpty()) {
+            throw new EntityDeleteConflictException("You can't delete Album with related Photos");
+        } else {
+            albumRepository.delete(album);
+        }
+    }
 }

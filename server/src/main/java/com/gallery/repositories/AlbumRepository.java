@@ -8,4 +8,6 @@ import com.gallery.entities.Country;
 
 @Repository
 public interface AlbumRepository extends JpaRepository<Album, Long> {
+
+    public Album findByName(String name);
 }

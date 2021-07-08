@@ -20,7 +20,7 @@ export class LoginComponent {
   constructor(private authService: AuthenticationService, private http: HttpClient, private router: Router) {
   }
 
-  submit() {
+  submit(): void {
     if (this.form.valid) {
       this.authService.login(this.form.controls['username'].value, this.form.controls['password'].value)
         .pipe(first())

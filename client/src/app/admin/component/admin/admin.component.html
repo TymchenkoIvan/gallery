@@ -1,16 +1,23 @@
 <mat-toolbar color="primary">
-  Admin module
+  <button mat-icon-button (click)="isExpanded = !isExpanded">
+    <mat-icon>menu</mat-icon>
+  </button>
+  admin module
   <span class="example-spacer"></span>
   <button mat-icon-button routerLink="../gallery">
     <mat-icon>home</mat-icon>
   </button>
+  <button mat-button (click)="logout()" *ngIf="isAuthenticated()">
+    <mat-icon>logout</mat-icon>
+  </button>
 </mat-toolbar>
-<mat-sidenav-container class="example-container">
-  <mat-sidenav #drawer mode="side" opened role="navigation">
+<mat-sidenav-container class="example-container" autosize>
+  <mat-sidenav #drawer *ngIf="isExpanded" mode="side" opened="true" role="navigation">
     <mat-nav-list>
-      <a mat-list-item routerLink='./' routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }">Countries</a>
+      <a mat-list-item routerLink='./public-photos' routerLinkActive="is-active"  [routerLinkActiveOptions]="{ exact: true }">Public photos</a>
+      <a mat-list-item routerLink='./private-photos' routerLinkActive="is-active">Private photos</a>
       <a mat-list-item routerLink='./albums' routerLinkActive="is-active">Albums</a>
-      <a mat-list-item routerLink='./photos' routerLinkActive="is-active">Photos</a>
+      <a mat-list-item routerLink='./countries' routerLinkActive="is-active">Countries</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

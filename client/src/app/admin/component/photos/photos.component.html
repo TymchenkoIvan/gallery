@@ -1,1 +1,24 @@
-<p>photos works!</p>
+<div class="add-button-container">
+  <button mat-fab color="warn" routerLink='./new'>
+    <mat-icon>add_a_photo</mat-icon>
+  </button>
+</div>
+<div class="gallery">
+  <div *ngFor="let photo of photos; let i = index" class="gallery-container" >
+    <div class="gallery-button-container">
+      <button mat-mini-fab color="primary"
+              *ngIf="!photo.isVisible"
+              [ngClass]="{hiddenPhoto: photo.isVisible === false}"
+              (click)="show(photo.id)">
+        <mat-icon>visibility_on</mat-icon>
+      </button>
+      <button mat-mini-fab color="primary" *ngIf="photo.isVisible" (click)="hide(photo.id)">
+        <mat-icon>visibility_off</mat-icon>
+      </button>
+      <button mat-mini-fab color="primary" routerLink='./{{photo.id}}/edit'>
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+    <img src="{{photo.thumbnailUrl}}" loading="lazy">
+  </div>
+</div>

@@ -1,0 +1,94 @@
+div.gallery-container {
+  float: left;
+  width: 20%;
+  height: 20vw/3*2;
+}
+
+div.gallery-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+div.gallery-container img:hover {
+  opacity: 1;
+  -webkit-animation: none;
+  animation: none;
+}
+
+@media screen and (max-width: 1800px) {
+  div.gallery-container {
+    width: 25%;
+    height: 25vw/3*2;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  div.gallery-container {
+    width: 33.3%;
+    height: 33.3vw/3*2;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  div.gallery-container {
+    width: 100%;
+    height: 100vw/3*2;
+  }
+}
+
+.img-slides {
+  display: none;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+img {
+  margin-bottom: -4px;
+}
+
+div.gallery {
+  margin: 16px;
+}
+
+div.gallery-button-container {
+  margin: 16px;
+  position: absolute;
+}
+
+
+div.gallery-container {
+  button {
+    opacity: 0;
+    margin-right: 16px;
+  }
+  button.hiddenPhoto{
+    opacity: 1;
+  }
+}
+
+div.gallery-container:hover {
+  button {
+    opacity: 0.6;
+  }
+  button:hover{
+    opacity: 1;
+  }
+  button.hiddenPhoto{
+    opacity: 1;
+  }
+}
+
+.add-button-container {
+  margin: 16px 16px 16px 0px;
+  border-radius: 5px;
+  padding-left: 16px;
+  button {
+    opacity: 0.6;
+  }
+  button:hover {
+    opacity: 1;
+  }
+}

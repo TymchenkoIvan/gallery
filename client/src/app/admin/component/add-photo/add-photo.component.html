@@ -1,0 +1,44 @@
+<mat-card>
+  <mat-card-title>{{title}}</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <p>
+        <mat-form-field>
+          <input type="text" matInput placeholder="Name" formControlName="name">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <textarea matInput placeholder="Description" formControlName="description"></textarea>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-select matInput placeholder="Album" formControlName="album">
+            <mat-option *ngFor="let album of albums" [value]="album.name">
+              {{album.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-slide-toggle formControlName="isVisible" color="primary">Is photo visible</mat-slide-toggle>
+      </p>
+      <p>
+        <mat-slide-toggle formControlName="isPrivate" disabled="true" color="primary">Is photo private</mat-slide-toggle>
+      </p>
+      <p>
+        <input type="file" accept="image/*" (change)="imageChanged($event)"/>
+      </p>
+      <div *ngIf="filePath && filePath !== ''" class="image-container">
+        <img [src]="filePath" [alt]="form.value.name">
+      </div>
+      <p *ngIf="error" class="error">
+        {{ error }}
+      </p>
+      <div class="button">
+        <button type="submit" [disabled]="!form.valid || filePath == null" mat-button>Save</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

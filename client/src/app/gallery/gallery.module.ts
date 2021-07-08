@@ -18,7 +18,6 @@ import {PhotoComponent} from './component/photo/photo.component';
 import {PhotoDialogComponent} from './component/photo-dialog/photo-dialog.component';
 import {HeaderComponent} from './component/header/header.component';
 import {LoginComponent} from './component/login/login.component';
-import {AddPhotoComponent} from './component/add-photo/add-photo.component';
 import {MatCardModule} from '@angular/material/card';
 import {NgxMatFileInputModule} from '@angular-material-components/file-input';
 import {MatMenuModule} from '@angular/material/menu';
@@ -26,6 +25,8 @@ import {MainComponent} from './component/main/main.component';
 import {PhotoService} from './service/photo-service.service';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {BasicAuthInterceptor} from './service/basic-auth-interceptor.service';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
 @NgModule({
@@ -35,8 +36,7 @@ import {BasicAuthInterceptor} from './service/basic-auth-interceptor.service';
     PhotoComponent,
     PhotoDialogComponent,
     HeaderComponent,
-    LoginComponent,
-    AddPhotoComponent
+    LoginComponent
   ],
   imports: [
     CommonModule,
@@ -55,7 +55,9 @@ import {BasicAuthInterceptor} from './service/basic-auth-interceptor.service';
     ReactiveFormsModule,
     MatCardModule,
     NgxMatFileInputModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTabsModule,
+    MatButtonToggleModule
   ],
   providers: [
     PhotoService,

@@ -1,11 +1,19 @@
-/*span.name{
-  margin-left: auto;
-  margin-right: auto;
-  color: black;
-}*/
-
 .example-spacer {
   flex: 1 1 auto;
 }
 
+button {
+  padding: 0px 8px;
+  min-width: 32px;
+}
 
+mat-toolbar {
+  height: 48px;
+}
+
+div.navigation-bar {
+  button {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}

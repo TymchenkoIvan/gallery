@@ -17,15 +17,15 @@ export class PhotoDialogComponent{
       }) {
   }
 
-  nextSlide() {
+  nextSlide(): void {
     this.data.index++;
   }
 
-  previousSlide() {
+  previousSlide(): void {
     this.data.index--;
   }
 
-  closeModal() {
+  closeModal(): void {
     this.dialogRef.close();
   }
 }

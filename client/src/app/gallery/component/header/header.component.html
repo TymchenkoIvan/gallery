@@ -1,28 +1,23 @@
-<mat-toolbar class="header">
-  <span class="name">Photo gallery</span>
+<mat-toolbar class="header" color="primary">
+  <div class="navigation-bar" *ngIf="isAuthenticated()">
+    <button mat-button routerLink="/gallery/public" routerLinkActive="mat-accent">
+      Public
+    </button>
+    <button mat-button routerLink="/gallery/private" routerLinkActive="mat-accent">
+      Private
+    </button>
+  </div>
   <span class="example-spacer"></span>
-  <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="isAuthenticated()"
-          aria-label="Example icon-button with a menu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="logout()">
-      <mat-icon>logout</mat-icon>
-      <span>Logout</span>
-    </button>
-    <button mat-menu-item routerLink="./add-photo">
-      <mat-icon>add_a_photo</mat-icon>
-      <span>Add photo</span>
-    </button>
-    <button mat-menu-item routerLink="./">
-      <mat-icon>home</mat-icon>
-      <span>Gallery</span>
-    </button>
-  </mat-menu>
-  <button mat-button routerLink="login" *ngIf="!isAuthenticated() && router.url != '/login'">
+  <button mat-button routerLink="login" *ngIf="!isAuthenticated() && router.url != '/gallery/login'">
     <mat-icon>login</mat-icon>
   </button>
-  <button mat-button routerLink="gallery" *ngIf="!isAuthenticated() && router.url === '/login'">
+  <button mat-button routerLink="/admin" *ngIf="isAuthenticated()">
+    <mat-icon>settings</mat-icon>
+  </button>
+  <button mat-icon-button *ngIf="router.url == '/gallery/login'" routerLink="../gallery">
     <mat-icon>home</mat-icon>
+  </button>
+  <button mat-button (click)="logout()" *ngIf="isAuthenticated()">
+    <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>

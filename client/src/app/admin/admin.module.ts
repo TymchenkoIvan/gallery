@@ -20,6 +20,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {AlbumService} from './service/album-service.service';
+import {AlbumDialogComponent} from './component/album/album-dialog.component';
+import {MatSelectModule} from '@angular/material/select';
+import {AddPhotoComponent} from './component/add-photo/add-photo.component';
+import {NgxMatFileInputModule} from '@angular-material-components/file-input';
+import {MatCardModule} from '@angular/material/card';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {EditPhotoComponent} from './component/edit-photo/edit-photo.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {NgxMatDatetimePickerModule, NgxMatNativeDateModule} from '@angular-material-components/datetime-picker';
 
 
 @NgModule({
@@ -28,7 +37,10 @@ import {AlbumService} from './service/album-service.service';
     AlbumComponent,
     AdminComponent,
     PhotosComponent,
-    CountryDialogComponent
+    CountryDialogComponent,
+    AlbumDialogComponent,
+    AddPhotoComponent,
+    EditPhotoComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +56,14 @@ import {AlbumService} from './service/album-service.service';
     MatFormFieldModule,
     FormsModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule,
+    NgxMatFileInputModule,
+    MatSlideToggleModule,
+    MatDatepickerModule,
+    MatCardModule,
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule
   ],
   providers: [
     CountryService,

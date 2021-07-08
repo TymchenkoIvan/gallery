@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -23,8 +24,10 @@ public class Photo {
     private Long id;
 
     @NotNull
+    @Size(min = 3, max = 50)
     private String name;
 
+    @Size(min = 3, max = 500)
     private String description;
 
     @NotNull
@@ -38,6 +41,12 @@ public class Photo {
 
     @Lob
     byte[] content;
+
+    @NotNull
+    boolean isVisible;
+
+    @NotNull
+    boolean isPrivate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "album_id", nullable = false)
@@ -115,5 +124,21 @@ public class Photo {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean isVisible() {
+        return isVisible;
+    }
+
+    public void setVisible(boolean visible) {
+        isVisible = visible;
+    }
+
+    public boolean isPrivate() {
+        return isPrivate;
+    }
+
+    public void setPrivate(boolean aPrivate) {
+        isPrivate = aPrivate;
     }
 }

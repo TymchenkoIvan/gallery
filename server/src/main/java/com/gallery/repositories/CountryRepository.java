@@ -7,4 +7,6 @@ import com.gallery.entities.Country;
 
 @Repository
 public interface CountryRepository extends JpaRepository<Country, Long> {
+
+    public Country findByName(String name);
 }

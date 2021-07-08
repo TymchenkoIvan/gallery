@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Album {
@@ -23,9 +24,11 @@ public class Album {
     @JoinColumn(name = "country_id", nullable = false)
     private Country country;
 
+    @Size(min = 3, max = 50)
     @Column(length = 50, nullable = false, unique=true)
     private String name;
 
+    @Size(min = 3, max = 250)
     private String description;
 
     @OneToMany(fetch = FetchType.LAZY, cascade =  CascadeType.ALL, mappedBy = "album")

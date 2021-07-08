@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {MainComponent} from './component/main/main.component';
 import {PhotoComponent} from './component/photo/photo.component';
-import {AddPhotoComponent} from './component/add-photo/add-photo.component';
 import {LoginComponent} from './component/login/login.component';
 import {GalleryComponent} from './component/gallery/gallery.component';
+import {AuthenticationService} from './service/authentication.service';
 
 const galleryRoutes: Routes = [
   {
@@ -14,11 +14,11 @@ const galleryRoutes: Routes = [
       {
         path: '',
         children: [
-          {path : '', component : GalleryComponent},
+          { path: 'public', component : GalleryComponent, data : {isPrivate : false}},
+          { path: 'private', component : GalleryComponent, data : {isPrivate : true}, canActivate: [AuthenticationService]},
           { path: 'photos/:id', component: PhotoComponent },
           { path: 'login', component: LoginComponent },
-          { path: 'add-photo', component: AddPhotoComponent },
-        ]
+          { path: '',   redirectTo: 'public', pathMatch: 'full' }        ]
       }
     ]
   }

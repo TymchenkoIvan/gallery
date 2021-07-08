@@ -1,9 +1,16 @@
 package com.gallery.dto;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 public class CountryDto {
 
     private Long id;
 
+    @Min(3)
+    @Max(50)
+    @NotNull
     private String name;
 
     public Long getId() {

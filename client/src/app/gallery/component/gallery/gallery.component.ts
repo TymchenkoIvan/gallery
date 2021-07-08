@@ -3,6 +3,7 @@ import {Photo} from '../../../model/photo';
 import {PhotoDialogComponent} from '../photo-dialog/photo-dialog.component';
 import {MatDialog, MatDialogRef, MatDialogState} from '@angular/material/dialog';
 import {PhotoService} from '../../service/photo-service.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-gallery',
@@ -17,26 +18,36 @@ export class GalleryComponent implements OnInit {
   photos: Photo[];
 
   constructor(private photoService: PhotoService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private route: ActivatedRoute) {
   }
 
-  ngOnInit() {
-    this.photoService.findAll().subscribe(data => {
-      this.photos = data;
+  ngOnInit(): void {
+    this.route.data.subscribe(data => {
+      if (data.isPrivate) {
+        this.photoService.findPrivateVisible().subscribe(privateVisible => {
+          this.photos = privateVisible;
+        });
+      } else {
+        this.photoService.findPublicVisible().subscribe(visible => {
+          this.photos = visible;
+        });
+      }
     });
   }
 
-  openModal(photo: Photo, index: Number) {
+  openModal(photo: Photo, index: number): void {
     this.dialogRef = this.dialog.open(PhotoDialogComponent, {
       panelClass: 'custom-dialog-container',
       data: {
         index: index,
         photos: this.photos
-      }
+      },
+      backdropClass: 'photoDialogBackground'
     });
   }
 
-  dialogIsOpen() {
+  dialogIsOpen(): boolean {
     if (this.dialogRef != null) {
       return this.dialogRef.getState() === MatDialogState.OPEN;
     }

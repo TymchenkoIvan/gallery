@@ -1,11 +1,20 @@
 package com.gallery.dto;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 public class AlbumDto {
 
     private Long id;
 
+    @Min(3)
+    @Max(50)
+    @NotNull
     private String name;
 
+    @Min(3)
+    @Max(250)
     private String description;
 
     private String countryName;

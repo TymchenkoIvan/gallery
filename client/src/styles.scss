@@ -10,3 +10,10 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.photoDialogBackground {
+  filter: blur(20);
+  background-color: white;
+  opacity: 0.8 !important;
+  transition: 0.8s ease;
+}

@@ -27,7 +27,7 @@ export class CountryDialogComponent {
 
   ngOnInit() {
     this.form = this.fb.group({
-      name: [this.countryDto ? this.countryDto.name : '', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      name: [this.countryDto ? this.countryDto.name : '', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
     });
   }
 

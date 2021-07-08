@@ -17,4 +17,8 @@ table {
 
 button {
   margin-right: 10px;
+  opacity: 0.6;
+}
+button:hover {
+  opacity: 1;
 }

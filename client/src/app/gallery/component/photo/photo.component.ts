@@ -26,15 +26,15 @@ export class PhotoComponent implements OnInit {
       .subscribe(photo => this.photo = photo);
   }
 
-  closeModal() {
+  closeModal(): void {
 
   }
 
-  nextSlide() {
+  nextSlide(): void {
 
   }
 
-  previousSlide() {
+  previousSlide(): void {
 
   }
 }

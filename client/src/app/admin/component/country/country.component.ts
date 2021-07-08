@@ -70,20 +70,24 @@ export class CountryComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.countryService.findAll().subscribe(data => {
       this.countries = data;
     });
   }
 
-  onDelete(id: number) {
+  onDelete(id: number): void {
     this.countryService.delete(id).subscribe(
       data => {
         this.snackBar.open('Deleted', 'Ok', {
           duration: 5000
         });
         this.ngOnInit();
+      },
+      error => {
+        this.snackBar.open(error.error, 'Ok', {
+          duration: 5000
+        });
       });
   }
-
 }

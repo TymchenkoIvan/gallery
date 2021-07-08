@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Date;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -20,25 +19,25 @@ import com.gallery.repositories.FileSystemRepository;
 import com.gallery.repositories.PhotoRepository;
 
 @Service
-public
-class FileLocationService {
+public class FileLocationService {
 
-    @Autowired
-    private FileSystemRepository fileSystemRepository;
+    private final FileSystemRepository fileSystemRepository;
+    private final PhotoRepository imageDbRepository;
 
-    @Autowired
-    private PhotoRepository imageDbRepository;
+    public FileLocationService(FileSystemRepository fileSystemRepository,
+            PhotoRepository imageDbRepository) {
+        this.fileSystemRepository = fileSystemRepository;
+        this.imageDbRepository = imageDbRepository;
+    }
 
-    @Autowired
-    private AlbumRepository albumRepository;
-
-    public Long save(byte[] bytes, String imageName) throws Exception {
-        String location = fileSystemRepository.saveOriginal(bytes, imageName);
-        String locationThumbnail = fileSystemRepository.saveThumbnail(bytes, imageName);
+    public Long save(byte[] bytes, Photo photo) throws Exception {
+        String location = fileSystemRepository.saveOriginal(bytes, photo.getName());
+        String locationThumbnail = fileSystemRepository.saveThumbnail(bytes, photo.getName());
         Date originalDateTime = executeDateTime(bytes);
 
-        Photo photo = new Photo(imageName, location, locationThumbnail, originalDateTime);
-        photo.setAlbum(albumRepository.getOne(1L));
+        photo.setPhotoLocation(location);
+        photo.setThumbnailLocation(locationThumbnail);
+        photo.setOriginalDate(originalDateTime);
 
         return imageDbRepository.save(photo).getId();
     }

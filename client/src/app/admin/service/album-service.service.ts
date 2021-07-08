@@ -17,16 +17,16 @@ export class AlbumService {
     return this.http.get<Album[]>(environment.apiUrl + AlbumService.PHOTOS_URL);
   }
 
-/*  public create(country: Country): Observable<Country> {
-    return this.http.post<Country>(environment.apiUrl + AlbumService.PHOTOS_URL, country);
+  public create(album: Album): Observable<Album> {
+    return this.http.post<Album>(environment.apiUrl + AlbumService.PHOTOS_URL, album);
   }
 
-  public update(id: number, country: Country): Observable<Country> {
-    return this.http.put<Country>(environment.apiUrl + AlbumService.PHOTOS_URL + '/' + id, country);
+  public update(id: number, album: Album): Observable<Album> {
+    return this.http.put<Album>(environment.apiUrl + AlbumService.PHOTOS_URL + '/' + id, album);
   }
 
   public delete(id: number): Observable<any> {
-    return this.http.delete(environment.apiUrl + AlbumService.PHOTOS_URL + '/' + id);
-  }*/
+     return this.http.delete(environment.apiUrl + AlbumService.PHOTOS_URL + '/' + id);
+   }
 }
 
