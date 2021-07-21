@@ -66,16 +66,8 @@ public class PhotoService {
     public void savePhoto(MultipartFile multipartImage, String photo) throws Exception {
         PhotoDto photoDto = convertor.readFromJson(photo);
         Photo photoEntity = convertor.toEntity(photoDto);
+        checkAndAddAlbum(photoDto, photoEntity);
 
-        if (photoDto.getAlbumName() != null && !photoDto.getAlbumName().isEmpty()) {
-            Album album = albumRepository.findByName(photoDto.getAlbumName());
-            if (album == null) {
-                throw new RuntimeException("Album " + photoDto.getAlbumName() + " is not found");
-            }
-            photoEntity.setAlbum(album);
-        } else {
-            photoEntity.setAlbum(albumRepository.getOne(1L));
-        }
         fileLocationService.save(multipartImage.getBytes(), photoEntity);
     }
 
@@ -86,7 +78,12 @@ public class PhotoService {
         photo.setDescription(photoDto.getDescription());
         photo.setVisible(photoDto.getIsVisible());
         photo.setOriginalDate(photoDto.getOriginalDate());
+        checkAndAddAlbum(photoDto, photo);
 
+        photoRepository.save(photo);
+    }
+
+    private void checkAndAddAlbum(PhotoDto photoDto, Photo photo) {
         if (photoDto.getAlbumName() != null && !photoDto.getAlbumName().isEmpty()) {
             Album album = albumRepository.findByName(photoDto.getAlbumName());
             if (album == null) {
@@ -96,6 +93,5 @@ public class PhotoService {
         } else {
             photo.setAlbum(albumRepository.getOne(1L));
         }
-        photoRepository.save(photo);
     }
 }

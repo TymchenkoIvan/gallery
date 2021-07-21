@@ -1,4 +1,5 @@
 <mat-toolbar class="header" color="primary">
+  <div *ngIf="!isAuthenticated()">Photos of my life</div>
   <div class="navigation-bar" *ngIf="isAuthenticated()">
     <button mat-button routerLink="/gallery/public" routerLinkActive="mat-accent">
       Public

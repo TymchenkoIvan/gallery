@@ -1,0 +1,29 @@
+management:
+  security:
+    enabled:
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 15MB
+      max-request-size: 15MB
+  jpa:
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL5Dialect
+  datasource:
+    url:
+    username:
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+
+gallery:
+  resource:
+    directory: C:/training/resources/
+  prefix: gallery/
+  thumbnail:
+    prefix: _thumbnail
+    width: 600
+    height: 400
+  file:
+    format: jpg

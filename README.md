@@ -1,5 +1,5 @@
 # to run on local machine
-mvn clean package
+mvn clean package -Pprod
 docker run -d --name docker_db 
     -e MYSQL_ROOT_PASSWORD=ThePassword 
     -e MYSQL_DATABASE=gallery 
@@ -20,5 +20,7 @@ docker build -t client .
 docker system prune --all
 docker exec -it <container_id> powershell
 docker exec -it <container_id> sh
+
+mvn clean package -P production
 docker-compose up --build -d
 

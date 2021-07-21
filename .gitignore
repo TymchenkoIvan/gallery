@@ -2,7 +2,6 @@
 server/target/
 server/.idea
 server/src/main/resources/gallery
-server/src/main/resources/application.properties
 
 client/node_modules
 client/node
@@ -18,3 +17,4 @@ client/dist/
 *.launch
 .settings/
 *.sublime-workspace
+/server/src/main/resources/application.yaml

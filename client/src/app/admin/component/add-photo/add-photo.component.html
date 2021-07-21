@@ -30,6 +30,9 @@
       <p>
         <input type="file" accept="image/*" (change)="imageChanged($event)"/>
       </p>
+      <p class="error" *ngIf="isImageUploaded && form.controls.file.errors?.fileIsToBig">
+        File size is to big
+      </p>
       <div *ngIf="filePath && filePath !== ''" class="image-container">
         <img [src]="filePath" [alt]="form.value.name">
       </div>
