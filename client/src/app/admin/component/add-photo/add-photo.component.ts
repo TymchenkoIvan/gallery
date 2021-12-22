@@ -7,7 +7,7 @@ import {ActivatedRoute} from '@angular/router';
 import {combineLatest} from 'rxjs';
 
 function validateFileSize(control: FormControl): { [key: string]: boolean } | null {
-  const maxFileSizeInMB = 15;
+  const maxFileSizeInMB = 20;
   console.log(control);
   return control.value.size / (1024 * 1024) < maxFileSizeInMB
     ? null : {fileIsToBig: true};
@@ -63,7 +63,6 @@ export class AddPhotoComponent implements OnInit {
       dto.isPrivate = this.isPrivate;
       delete dto.file;
       const uploadData = new FormData();
-      console.log(dto);
       uploadData.append('file', this.form.controls.file.value, this.form.controls.file.value.name);
       uploadData.append('dto', JSON.stringify(dto));
       this.photoService.uploadPhoto(uploadData);

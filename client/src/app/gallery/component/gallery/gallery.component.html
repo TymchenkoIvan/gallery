@@ -1,8 +1,8 @@
 <div class="gallery">
   <div *ngFor="let photo of photos; let i = index" class="gallery-container" >
       <img src="{{photo.thumbnailUrl}}"
-           (click)="openModal(photo, i)"
+           class="photo{{photo.id}}"
+           [routerLink]="['./photos', photo.id]"
            loading="lazy" >
   </div>
 </div>
-

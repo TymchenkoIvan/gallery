@@ -14,7 +14,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {GalleryComponent} from './component/gallery/gallery.component';
-import {PhotoComponent} from './component/photo/photo.component';
+import {CardHoverDirective, PhotoComponent} from './component/photo/photo.component';
 import {PhotoDialogComponent} from './component/photo-dialog/photo-dialog.component';
 import {HeaderComponent} from './component/header/header.component';
 import {LoginComponent} from './component/login/login.component';
@@ -27,6 +27,7 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {BasicAuthInterceptor} from './service/basic-auth-interceptor.service';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     PhotoComponent,
     PhotoDialogComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    CardHoverDirective
   ],
   imports: [
     CommonModule,
@@ -57,7 +59,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     NgxMatFileInputModule,
     MatMenuModule,
     MatTabsModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     PhotoService,

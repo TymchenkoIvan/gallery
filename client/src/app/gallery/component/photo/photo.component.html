@@ -1,7 +1,10 @@
-<span class="close cursor" (click)="closeModal()">&#x2716;</span>
-<div class="slide-modal-content">
-  <img class="center-fit" src="http://localhost:8080/photos/{{this.photo.id}}/content">
-  <a class="prev" *ngIf="" (click)="nextSlide()">&#10094;</a>
-  <a class="next" (click)="previousSlide()">&#10095;</a>
+<div class="slide-modal-content" photoKeyboardDirective (kyboardEvent)="keyboardCommand($event)">
+  <mat-spinner class="center-fit"*ngIf="!failOnLoad && !imageToShow"></mat-spinner>
+  <a class="close cursor" (click)="close()" title="Close (Esc)">&#x2716;</a>
+  <img class="center-fit" [src]=imageToShow *ngIf="!failOnLoad; else noImageFound">
+  <ng-template #noImageFound>
+    <img class="center-fit" src="assets/fallbackImage.jpg">
+  </ng-template>
+  <a *ngIf="imageToShow" class="prev" (click)="navigateToPrev()" title="Previous photo (&#8592;)">&#10094;</a>
+  <a *ngIf="imageToShow" class="next" (click)="navigateToNext()" title="Next photo (&#8594;)">&#10095;</a>
 </div>
-

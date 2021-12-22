@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://tymchenko.art:8080'
+  apiUrl: 'http://localhost:8080'
+/*
+  apiUrl: 'http://tymchenko.art'
+*/
 };
 
 /*

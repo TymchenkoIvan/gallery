@@ -16,7 +16,8 @@ const galleryRoutes: Routes = [
         children: [
           { path: 'public', component : GalleryComponent, data : {isPrivate : false}},
           { path: 'private', component : GalleryComponent, data : {isPrivate : true}, canActivate: [AuthenticationService]},
-          { path: 'photos/:id', component: PhotoComponent },
+          { path: 'public/photos/:id', component: PhotoComponent, data : {isPrivate : false} },
+          { path: 'private/photos/:id', component: PhotoComponent, data : {isPrivate : true}, canActivate: [AuthenticationService]},
           { path: 'login', component: LoginComponent },
           { path: '',   redirectTo: 'public', pathMatch: 'full' }        ]
       }

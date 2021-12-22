@@ -1,7 +1,9 @@
 package com.gallery.controllers;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gallery.dto.PhotoDto;
+import com.gallery.services.CropPhotoService;
 import com.gallery.services.FileLocationService;
 import com.gallery.services.PhotoService;
 
@@ -27,11 +30,14 @@ public class PhotoController {
 
     private final FileLocationService fileLocationService;
     private final PhotoService photoService;
+    private final CropPhotoService cropPhotoService;
 
     public PhotoController(FileLocationService fileLocationService,
-                           PhotoService photoService) {
+                           PhotoService photoService,
+                           CropPhotoService cropPhotoService) {
         this.fileLocationService = fileLocationService;
         this.photoService = photoService;
+        this.cropPhotoService = cropPhotoService;
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -63,8 +69,9 @@ public class PhotoController {
     }
 
     @GetMapping(value = "/{id}/content", produces = MediaType.IMAGE_JPEG_VALUE)
-    Resource downloadImage(@PathVariable Long id) {
-        return fileLocationService.findPhoto(id);
+    byte[] downloadImage(@PathVariable Long id) throws IOException {
+        FileSystemResource content = fileLocationService.findPhoto(id);
+        return cropPhotoService.cropImage(content);
     }
 
     @GetMapping(value = "/{id}/thumbnail", produces = MediaType.IMAGE_JPEG_VALUE)

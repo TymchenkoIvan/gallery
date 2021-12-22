@@ -5,8 +5,8 @@ management:
 spring:
   servlet:
     multipart:
-      max-file-size: 15MB
-      max-request-size: 15MB
+      max-file-size: 20MB
+      max-request-size: 20MB
   jpa:
     hibernate:
       ddl-auto: update
@@ -21,6 +21,9 @@ gallery:
   resource:
     directory: C:/training/resources/
   prefix: gallery/
+  content:
+    width: 2400
+    height: 2400
   thumbnail:
     prefix: _thumbnail
     width: 600

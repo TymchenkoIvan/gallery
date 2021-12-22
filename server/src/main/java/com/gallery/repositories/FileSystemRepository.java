@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Repository;
 
+import com.gallery.services.CropPhotoService;
+
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
 
@@ -32,11 +34,11 @@ public class FileSystemRepository {
     @Value( "${gallery.thumbnail.prefix}" )
     private String thumbnailPrefix;
 
-    @Value( "${gallery.thumbnail.width}" )
-    private Integer thumbnailWidth;
+    private final CropPhotoService cropPhotoService;
 
-    @Value( "${gallery.thumbnail.height}" )
-    private Integer thumbnailHeight;
+    public FileSystemRepository(CropPhotoService cropPhotoService) {
+        this.cropPhotoService = cropPhotoService;
+    }
 
     public String saveOriginal(byte[] content, String imageName) throws Exception {
         String fileLocation = galleryPrefix + imageName + "_" + new Date().getTime();
@@ -45,14 +47,7 @@ public class FileSystemRepository {
 
     public String saveThumbnail(byte[] content, String imageName) throws Exception {
         String fileLocation = galleryPrefix + imageName + "_" + new Date().getTime() + thumbnailPrefix;
-        BufferedImage thumbnail = toBufferedImage(content);
-
-        thumbnail = Thumbnails.of(thumbnail)
-                .crop(Positions.CENTER)
-                .size(thumbnailWidth, thumbnailHeight)
-                .outputFormat(fileFormat)
-                .asBufferedImage();
-
+        BufferedImage thumbnail = cropPhotoService.prepareThumbnail(content);
         return save(toByteArray(thumbnail), fileLocation);
     }
 
@@ -70,15 +65,6 @@ public class FileSystemRepository {
             return new FileSystemResource(resourcesDir + location);
         } catch (Exception e) {
             throw new RuntimeException();
-        }
-    }
-
-    private BufferedImage toBufferedImage(byte[] imageData) {
-        ByteArrayInputStream bais = new ByteArrayInputStream(imageData);
-        try {
-            return ImageIO.read(bais);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 

@@ -21,6 +21,6 @@ docker system prune --all
 docker exec -it <container_id> powershell
 docker exec -it <container_id> sh
 
-mvn clean package -P production
+mvn clean package -P prod
 docker-compose up --build -d
 

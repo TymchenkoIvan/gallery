@@ -17,6 +17,7 @@ import {NgxMatFileInputModule} from '@angular-material-components/file-input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {BasicAuthInterceptor} from './gallery/service/basic-auth-interceptor.service';
 import {PhotoService} from './gallery/service/photo-service.service';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {PhotoService} from './gallery/service/photo-service.service';
     MatSnackBarModule,
     NgxMatFileInputModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     PhotoService,
