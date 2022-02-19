@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {PhotoService} from '../../../gallery/service/photo-service.service';
 import {AlbumService} from '../../service/album-service.service';
 import {Album} from '../../../model/album';
@@ -8,9 +8,12 @@ import {combineLatest} from 'rxjs';
 
 function validateFileSize(control: FormControl): { [key: string]: boolean } | null {
   const maxFileSizeInMB = 20;
-  console.log(control);
-  return control.value.size / (1024 * 1024) < maxFileSizeInMB
-    ? null : {fileIsToBig: true};
+  if (control.value instanceof File) {
+    return control.value.size / (1024 * 1024) > maxFileSizeInMB
+      ? {fileIsToBig: true}
+      : null;
+  }
+  return null;
 }
 
 @Component({
@@ -93,5 +96,9 @@ export class AddPhotoComponent implements OnInit {
 
   updateFileName(fileName: string): void {
     this.form.patchValue({name: fileName});
+  }
+
+  isFileToBig(): boolean {
+    return this.isImageUploaded && this.form.controls.file.errors?.fileIsToBig;
   }
 }

@@ -13,13 +13,16 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class GalleryComponent implements OnInit {
 
+  isScrollButtonShown: boolean;
+  topPosToStartShowing = 100;
   dialogRef: MatDialogRef<PhotoDialogComponent>;
   photos: Photo[];
-  private prevPhotoId: string = null;
+  private readonly prevPhotoId: string = null;
 
-  @HostListener('window:keyup', ['$event'])
-  keyEvent(event: KeyboardEvent): void {
-    console.log(event);
+  @HostListener('window:scroll')
+  private checkScroll(): void {
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    this.isScrollButtonShown = scrollPosition >= this.topPosToStartShowing;
   }
 
   constructor(private photoService: PhotoService,
@@ -59,6 +62,14 @@ export class GalleryComponent implements OnInit {
     });
   }
 
+  gotoTop(): void {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
+
   delay(milliseconds: number): Promise<any> {
     return new Promise(function(resolve) {
       setTimeout(resolve, milliseconds);
@@ -70,21 +81,4 @@ export class GalleryComponent implements OnInit {
     const photoSelector = '.photo' + this.prevPhotoId;
     this.el.nativeElement.querySelector(photoSelector).scrollIntoView();
   }
- /* openModal(photo: Photo, index: number): void {
-    this.dialogRef = this.dialog.open(PhotoDialogComponent, {
-      panelClass: 'custom-dialog-container',
-      data: {
-        index: index,
-        photos: this.photos
-      },
-      backdropClass: 'photoDialogBackground'
-    });
-  }
-
-  dialogIsOpen(): boolean {
-    if (this.dialogRef != null) {
-      return this.dialogRef.getState() === MatDialogState.OPEN;
-    }
-    return false;
-  }*/
 }

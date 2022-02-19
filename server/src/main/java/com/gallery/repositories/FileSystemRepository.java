@@ -1,6 +1,5 @@
 package com.gallery.repositories;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,9 +14,6 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Repository;
 
 import com.gallery.services.CropPhotoService;
-
-import net.coobird.thumbnailator.Thumbnails;
-import net.coobird.thumbnailator.geometry.Positions;
 
 @Repository
 public class FileSystemRepository {
@@ -34,6 +30,9 @@ public class FileSystemRepository {
     @Value( "${gallery.thumbnail.prefix}" )
     private String thumbnailPrefix;
 
+    @Value( "${gallery.crop.prefix}" )
+    private String cropPrefix;
+
     private final CropPhotoService cropPhotoService;
 
     public FileSystemRepository(CropPhotoService cropPhotoService) {
@@ -49,6 +48,12 @@ public class FileSystemRepository {
         String fileLocation = galleryPrefix + imageName + "_" + new Date().getTime() + thumbnailPrefix;
         BufferedImage thumbnail = cropPhotoService.prepareThumbnail(content);
         return save(toByteArray(thumbnail), fileLocation);
+    }
+
+    public String saveCrop(byte[] content, String imageName) throws Exception {
+        String fileLocation = galleryPrefix + imageName + "_" + new Date().getTime() + cropPrefix;
+        BufferedImage crop = cropPhotoService.prepareCrop(content);
+        return save(toByteArray(crop), fileLocation);
     }
 
     private String save(byte[] content, String fileLocation) throws Exception {

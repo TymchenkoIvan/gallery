@@ -1,4 +1,9 @@
 <div class="gallery">
+  <div *ngIf="isScrollButtonShown" class="scroll-to-top-container">
+    <button mat-fab color="primary" (click)="gotoTop()">
+      <mat-icon>keyboard_arrow_up</mat-icon>
+    </button>
+  </div>
   <div *ngFor="let photo of photos; let i = index" class="gallery-container" >
       <img src="{{photo.thumbnailUrl}}"
            class="photo{{photo.id}}"

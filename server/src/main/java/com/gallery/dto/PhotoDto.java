@@ -29,6 +29,8 @@ public class PhotoDto {
 
     private String thumbnailLocation;
 
+    private String cropLocation;
+
     private Date originalDate;
 
     @JsonAlias("album")
@@ -108,5 +110,13 @@ public class PhotoDto {
 
     public void setPrivate(Boolean aPrivate) {
         isPrivate = aPrivate;
+    }
+
+    public String getCropLocation() {
+        return cropLocation;
+    }
+
+    public void setCropLocation(String cropLocation) {
+        this.cropLocation = cropLocation;
     }
 }

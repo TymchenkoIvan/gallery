@@ -21,7 +21,8 @@ gallery:
   resource:
     directory: C:/training/resources/
   prefix: gallery/
-  content:
+  crop:
+    prefix: _crop
     width: 2400
     height: 2400
   thumbnail:

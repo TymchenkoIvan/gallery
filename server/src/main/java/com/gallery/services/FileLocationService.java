@@ -14,7 +14,6 @@ import com.drew.imaging.ImageProcessingException;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.exif.ExifSubIFDDirectory;
 import com.gallery.entities.Photo;
-import com.gallery.repositories.AlbumRepository;
 import com.gallery.repositories.FileSystemRepository;
 import com.gallery.repositories.PhotoRepository;
 
@@ -22,35 +21,37 @@ import com.gallery.repositories.PhotoRepository;
 public class FileLocationService {
 
     private final FileSystemRepository fileSystemRepository;
-    private final PhotoRepository imageDbRepository;
+    private final PhotoRepository photoRepository;
 
     public FileLocationService(FileSystemRepository fileSystemRepository,
-            PhotoRepository imageDbRepository) {
+                               PhotoRepository photoRepository) {
         this.fileSystemRepository = fileSystemRepository;
-        this.imageDbRepository = imageDbRepository;
+        this.photoRepository = photoRepository;
     }
 
     public Long save(byte[] bytes, Photo photo) throws Exception {
         String location = fileSystemRepository.saveOriginal(bytes, photo.getName());
         String locationThumbnail = fileSystemRepository.saveThumbnail(bytes, photo.getName());
+        String locationCrop = fileSystemRepository.saveCrop(bytes, photo.getName());
         Date originalDateTime = executeDateTime(bytes);
 
         photo.setPhotoLocation(location);
         photo.setThumbnailLocation(locationThumbnail);
+        photo.setCropLocation(locationCrop);
         photo.setOriginalDate(originalDateTime);
 
-        return imageDbRepository.save(photo).getId();
+        return photoRepository.save(photo).getId();
     }
 
-    public FileSystemResource findPhoto(Long imageId) {
-        Photo photo = imageDbRepository.findById(imageId)
+    public FileSystemResource findCroppedPhoto(Long imageId) {
+        Photo photo = photoRepository.findById(imageId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        return fileSystemRepository.findInFileSystem(photo.getPhotoLocation());
+        return fileSystemRepository.findInFileSystem(photo.getCropLocation());
     }
 
     public FileSystemResource findThumbnail(Long imageId) {
-        Photo photo = imageDbRepository.findById(imageId)
+        Photo photo = photoRepository.findById(imageId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         return fileSystemRepository.findInFileSystem(photo.getThumbnailLocation());

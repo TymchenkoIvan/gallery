@@ -37,6 +37,9 @@ public class Photo {
     private String thumbnailLocation;
 
     @NotNull
+    private String cropLocation;
+
+    @NotNull
     private Date originalDate;
 
     @Lob
@@ -81,7 +84,7 @@ public class Photo {
     public Long getId() {
         return id;
     }
-    
+
     public String getPhotoLocation() {
         return photoLocation;
     }
@@ -140,5 +143,13 @@ public class Photo {
 
     public void setPrivate(boolean aPrivate) {
         isPrivate = aPrivate;
+    }
+
+    public String getCropLocation() {
+        return cropLocation;
+    }
+
+    public void setCropLocation(String cropLocation) {
+        this.cropLocation = cropLocation;
     }
 }

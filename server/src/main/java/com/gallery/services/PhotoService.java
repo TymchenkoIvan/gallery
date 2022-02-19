@@ -10,6 +10,7 @@ import com.gallery.dto.PhotoDto;
 import com.gallery.entities.Album;
 import com.gallery.entities.Photo;
 import com.gallery.repositories.AlbumRepository;
+import com.gallery.repositories.FileSystemRepository;
 import com.gallery.repositories.PhotoRepository;
 
 @Component
@@ -23,7 +24,9 @@ public class PhotoService {
     public PhotoService(PhotoRepository photoRepository,
                         FileLocationService fileLocationService,
                         AlbumRepository albumRepository,
-                        ConvertorService convertor) {
+                        ConvertorService convertor,
+                        CropPhotoService cropPhotoService,
+                        FileSystemRepository fileSystemRepository) {
         this.photoRepository = photoRepository;
         this.convertor = convertor;
         this.fileLocationService = fileLocationService;
